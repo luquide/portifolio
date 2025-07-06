@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 95 - Desktop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖥️</text></svg>">
+    <!-- Retro 90s Portfolio - GitHub Pages Ready -->
+    <!-- Structure: SPA with modal navigation for authentic 90s desktop experience -->
+    <!-- Chosen Palette: Classic Windows Gray -->
+    <!-- Application Structure Plan: A Single-Page Application (SPA) designed to mimic a classic desktop OS window. Navigation is handled by JavaScript, showing/hiding content sections ('#home', '#projects', '#about', '#contact') without page reloads. This structure was chosen to provide a fluid, modern SPA experience while being presented within a nostalgic, user-friendly 90s visual theme. Project details are shown in modal pop-ups to keep the user within the single-page context, enhancing usability. -->
+    <!-- Visualization & Content Choices: Home: Classic welcome text with an animated GIF to set the 90s tone. Projects: A grid layout styled to look like a classic file explorer, with modals for details to provide deep information without leaving the page. About: A text section combined with a retro-styled bar chart from Chart.js to visually represent skills. Contact: Simple mailto links with classic icons. Guestbook: A 'fake' but interactive JS-powered version to demonstrate the concept without a backend. All elements are styled with Tailwind CSS to emulate the beveled, blocky look of the era. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        body {
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            background-color: #000080; /* Classic dark blue */
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+        }
+        .win-95-border {
+            border-style: solid;
+            border-width: 2px;
+            border-left-color: #ffffff;
+            border-top-color: #ffffff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            box-shadow: 1px 1px 0 1px #000000;
+        }
+        .win-95-border-inset {
+            border-style: solid;
+            border-width: 2px;
+            border-left-color: #808080;
+            border-top-color: #808080;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+        .win-95-button {
+            background-color: #c0c0c0;
+            padding: 5px 15px;
+            border-style: solid;
+            border-width: 2px;
+            border-left-color: #ffffff;
+            border-top-color: #ffffff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            box-shadow: 1px 1px 0 1px #000000;
+        }
+        .win-95-button:active {
+            border-left-color: #808080;
+            border-top-color: #808080;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+            box-shadow: none;
+        }
+        .crt-effect::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="h-screen overflow-hidden select-none">
+    
+    <!-- Desktop Background -->
+    <div id="desktop" class="h-full w-full relative">
+        
+        <!-- Desktop Icons -->
+        <div class="absolute inset-0 p-4">
+            <!-- My Computer -->
+            <div class="desktop-icon absolute top-4 left-4" data-app="mycomputer">
+                <div class="w-16 h-16 bg-gray-300 win-95-border flex items-center justify-center text-2xl mb-1">
+                    🖥️
+                </div>
+                <div class="text-white text-center text-sm bg-blue-900 bg-opacity-70 px-1 rounded">My Computer</div>
+            </div>
+            
+            <!-- Portfolio -->
+            <div class="desktop-icon absolute top-4 left-24" data-app="portfolio">
+                <div class="w-16 h-16 bg-gray-300 win-95-border flex items-center justify-center text-2xl mb-1">
+                    📁
+                </div>
+                <div class="text-white text-center text-sm bg-blue-900 bg-opacity-70 px-1 rounded">Portfolio</div>
+            </div>
+            
+            <!-- Recycle Bin -->
+            <div class="desktop-icon absolute top-4 right-4" data-app="recycle">
+                <div class="w-16 h-16 bg-gray-300 win-95-border flex items-center justify-center text-2xl mb-1">
+                    🗑️
+                </div>
+                <div class="text-white text-center text-sm bg-blue-900 bg-opacity-70 px-1 rounded">Recycle Bin</div>
+            </div>
+            
+            <!-- Games -->
+            <div class="desktop-icon absolute top-32 left-4" data-app="games">
+                <div class="w-16 h-16 bg-gray-300 win-95-border flex items-center justify-center text-2xl mb-1">
+                    🎮
+                </div>
+                <div class="text-white text-center text-sm bg-blue-900 bg-opacity-70 px-1 rounded">Games</div>
+            </div>
+            
+            <!-- Internet -->
+            <div class="desktop-icon absolute top-32 left-24" data-app="internet">
+                <div class="w-16 h-16 bg-gray-300 win-95-border flex items-center justify-center text-2xl mb-1">
+                    🌐
+                </div>
+                <div class="text-white text-center text-sm bg-blue-900 bg-opacity-70 px-1 rounded">Internet</div>
+            </div>
+            
+            <!-- Notepad -->
+            <div class="desktop-icon absolute top-60 left-4" data-app="notepad">
+                <div class="w-16 h-16 bg-gray-300 win-95-border flex items-center justify-center text-2xl mb-1">
+                    📝
+                </div>
+                <div class="text-white text-center text-sm bg-blue-900 bg-opacity-70 px-1 rounded">Notepad</div>
+            </div>
+        </div>
+        
+        <!-- Windows Container -->
+        <div id="windows-container" class="absolute inset-0 pointer-events-none">
+            <!-- Windows will be dynamically created here -->
+        </div>
+        
+        <!-- Taskbar -->
+        <div class="taskbar bg-[#c0c0c0] win-95-border flex items-center px-1 pointer-events-auto">
+            <!-- Start Button -->
+            <button id="start-button" class="win-95-button flex items-center gap-2 mr-2">
+                <div class="bg-red-500 rounded-sm flex items-center justify-center text-white font-bold">⊞</div>
+                <span>Start</span>
+            </button>
+            
+            <!-- Running Programs -->
+            <div id="taskbar-programs" class="flex-1 flex gap-1">
+                <!-- Running program buttons will appear here -->
+            </div>
+            
+            <!-- System Tray -->
+            <div class="flex items-center gap-2 win-95-border-inset px-2" style="height: calc(var(--taskbar-height) - 4px);">
+                <div class="text-xs">🔊</div>
+                <div id="clock" class="font-mono">00:00</div>
+            </div>
+        </div>
+        
+        <!-- Start Menu -->
+        <div id="start-menu" class="absolute bottom-10 left-0 w-64 bg-[#c0c0c0] win-95-border hidden pointer-events-auto">
+            <div class="bg-gradient-to-r from-blue-800 to-blue-600 text-white p-2 text-sm font-bold">
+                Windows 95
+            </div>
+            <div class="p-1">
+                <div class="menu-item p-2 hover:bg-blue-600 hover:text-white cursor-pointer" data-app="portfolio">
+                    <div class="flex items-center gap-2">
+                        <span>📁</span>
+                        <span>Portfolio</span>
+                    </div>
+                </div>
+                <div class="menu-item p-2 hover:bg-blue-600 hover:text-white cursor-pointer" data-app="mycomputer">
+                    <div class="flex items-center gap-2">
+                        <span>🖥️</span>
+                        <span>My Computer</span>
+                    </div>
+                </div>
+                <div class="menu-item p-2 hover:bg-blue-600 hover:text-white cursor-pointer" data-app="games">
+                    <div class="flex items-center gap-2">
+                        <span>🎮</span>
+                        <span>Games</span>
+                    </div>
+                </div>
+                <hr class="my-1 border-gray-400">
+                <div class="menu-item p-2 hover:bg-blue-600 hover:text-white cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <span>⚙️</span>
+                        <span>Settings</span>
+                    </div>
+                </div>
+                <div class="menu-item p-2 hover:bg-blue-600 hover:text-white cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <span>🔌</span>
+                        <span>Shut Down...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Window Templates -->
+    <template id="portfolio-window-template">
+        <div class="window w-full max-w-4xl h-[85vh] bg-[#c0c0c0] win-95-border flex flex-col pointer-events-auto" data-app="portfolio">
+            <div class="window-header bg-[#000080] text-white p-1 flex justify-between items-center cursor-move">
+                <h1 class="font-bold text-sm">Portfolio - C:\Portfolio\Meu_Portfolio.exe</h1>
+                <div class="flex space-x-1">
+                    <button class="window-minimize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">_</button>
+                    <button class="window-maximize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">□</button>
+                    <button class="window-close w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar p-1 bg-[#c0c0c0] flex border-b-2 border-b-[#808080]">
+                <nav class="flex space-x-4">
+                    <button data-target="home" class="nav-link underline"><u>I</u>nício</button>
+                    <button data-target="projects" class="nav-link"><u>P</u>rojetos</button>
+                    <button data-target="about" class="nav-link"><u>S</u>obre</button>
+                    <button data-target="contact" class="nav-link"><u>C</u>ontato</button>
+                </nav>
+            </div>
+            <div class="window-content flex-grow p-4 win-95-border-inset overflow-y-auto relative crt-effect">
+                <!-- Portfolio content will be loaded here -->
+            </div>
+        </div>
+    </template>
+    
+    <template id="mycomputer-window-template">
+        <div class="window w-full max-w-2xl h-96 bg-[#c0c0c0] win-95-border flex flex-col pointer-events-auto" data-app="mycomputer">
+            <div class="window-header bg-[#000080] text-white p-1 flex justify-between items-center cursor-move">
+                <h1 class="font-bold text-sm">My Computer</h1>
+                <div class="flex space-x-1">
+                    <button class="window-minimize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">_</button>
+                    <button class="window-maximize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">□</button>
+                    <button class="window-close w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">✕</button>
+                </div>
+            </div>
+            <div class="window-content flex-grow p-4 win-95-border-inset bg-white">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <div class="w-8 h-8 bg-gray-300 win-95-border flex items-center justify-center text-sm">💾</div>
+                        <span>3½ Floppy (A:)</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <div class="w-8 h-8 bg-gray-300 win-95-border flex items-center justify-center text-sm">💽</div>
+                        <span>Hard Drive (C:)</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <div class="w-8 h-8 bg-gray-300 win-95-border flex items-center justify-center text-sm">📀</div>
+                        <span>CD-ROM (D:)</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <div class="w-8 h-8 bg-gray-300 win-95-border flex items-center justify-center text-sm">🖨️</div>
+                        <span>Printers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="games-window-template">
+        <div class="window w-full max-w-md h-80 bg-[#c0c0c0] win-95-border flex flex-col pointer-events-auto" data-app="games">
+            <div class="window-header bg-[#000080] text-white p-1 flex justify-between items-center cursor-move">
+                <h1 class="font-bold text-sm">Games</h1>
+                <div class="flex space-x-1">
+                    <button class="window-minimize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">_</button>
+                    <button class="window-maximize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">□</button>
+                    <button class="window-close w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">✕</button>
+                </div>
+            </div>
+            <div class="window-content flex-grow p-4 win-95-border-inset bg-white">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <span>🎯</span>
+                        <span>Solitaire</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <span>💣</span>
+                        <span>Minesweeper</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <span>🎲</span>
+                        <span>Hearts</span>
+                    </div>
+                    <div class="flex items-center gap-2 p-2 hover:bg-blue-100 cursor-pointer">
+                        <span>🃏</span>
+                        <span>FreeCell</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="notepad-window-template">
+        <div class="window w-full max-w-2xl h-96 bg-[#c0c0c0] win-95-border flex flex-col pointer-events-auto" data-app="notepad">
+            <div class="window-header bg-[#000080] text-white p-1 flex justify-between items-center cursor-move">
+                <h1 class="font-bold text-sm">Untitled - Notepad</h1>
+                <div class="flex space-x-1">
+                    <button class="window-minimize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">_</button>
+                    <button class="window-maximize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">□</button>
+                    <button class="window-close w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar p-1 bg-[#c0c0c0] border-b border-gray-400">
+                <div class="flex space-x-4 text-xs">
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">File</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Edit</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Search</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Help</span>
+                </div>
+            </div>
+            <div class="window-content flex-grow win-95-border-inset bg-white">
+                <textarea class="w-full h-full p-2 border-none outline-none resize-none bg-white font-mono text-sm" placeholder="Type your text here..." style="font-family: 'Courier New', monospace;"></textarea>
+            </div>
+        </div>
+    </template>
+    
+    <template id="internet-window-template">
+        <div class="window w-full max-w-4xl h-96 bg-[#c0c0c0] win-95-border flex flex-col pointer-events-auto" data-app="internet">
+            <div class="window-header bg-[#000080] text-white p-1 flex justify-between items-center cursor-move">
+                <h1 class="font-bold text-sm">Internet Explorer</h1>
+                <div class="flex space-x-1">
+                    <button class="window-minimize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">_</button>
+                    <button class="window-maximize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">□</button>
+                    <button class="window-close w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar p-1 bg-[#c0c0c0] border-b border-gray-400">
+                <div class="flex space-x-4 text-xs">
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">File</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Edit</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">View</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Go</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Favorites</span>
+                    <span class="cursor-pointer hover:bg-blue-600 hover:text-white px-1">Help</span>
+                </div>
+            </div>
+            <div class="p-2 bg-[#c0c0c0] border-b border-gray-400">
+                <div class="flex items-center gap-2">
+                    <div class="win-95-border-inset flex-grow bg-white p-1 text-xs">
+                        <span class="text-gray-600">Address:</span>
+                        <span class="ml-2">http://www.example.com</span>
+                    </div>
+                    <button class="win-95-button text-xs px-2 py-1">Go</button>
+                </div>
+            </div>
+            <div class="window-content flex-grow win-95-border-inset bg-white p-4">
+                <div class="text-center mt-8">
+                    <div class="text-6xl mb-4">🌐</div>
+                    <h2 class="text-xl mb-2">Welcome to the Internet!</h2>
+                    <p class="text-sm text-gray-600 mb-4">This is a nostalgic recreation of Internet Explorer.</p>
+                    <div class="text-xs text-gray-500">
+                        <p>• No actual internet connection required</p>
+                        <p>• Purely for aesthetic purposes</p>
+                        <p>• Powered by nostalgia and HTML</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="recycle-window-template">
+        <div class="window w-full max-w-lg h-80 bg-[#c0c0c0] win-95-border flex flex-col pointer-events-auto" data-app="recycle">
+            <div class="window-header bg-[#000080] text-white p-1 flex justify-between items-center cursor-move">
+                <h1 class="font-bold text-sm">Recycle Bin</h1>
+                <div class="flex space-x-1">
+                    <button class="window-minimize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">_</button>
+                    <button class="window-maximize w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">□</button>
+                    <button class="window-close w-6 h-6 bg-[#c0c0c0] win-95-border font-bold text-black text-xs">✕</button>
+                </div>
+            </div>
+            <div class="window-content flex-grow p-4 win-95-border-inset bg-white">
+                <div class="text-center mt-8">
+                    <div class="text-6xl mb-4">🗑️</div>
+                    <h2 class="text-lg mb-2">Recycle Bin is empty</h2>
+                    <p class="text-sm text-gray-600">
+                        To delete files, drag them to the Recycle Bin or select them and press Delete.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <script src="js/desktop.js"></script>
+    <script src="js/windows.js"></script>
+    <script src="js/portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+# GitHub Pages Configuration for Retro 90s Portfolio
+
+# Site settings
+title: "Portfólio Retro 90s"
+description: "Um portfólio pessoal com estética nostálgica dos anos 90"
+baseurl: ""
+url: "https://seuusuario.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+safe: true
+incremental: false
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Include/Exclude files
+include:
+  - _pages
+  - css
+  - js
+  - images
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# SEO settings
+lang: pt-br
+author: "Seu Nome"
+twitter:
+  username: seuusuario
+  card: summary
+
+# Social media
+social:
+  name: "Seu Nome"
+  links:
+    - "https://github.com/seuusuario"
+    - "https://linkedin.com/in/seuusuario" 
